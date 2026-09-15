@@ -9,8 +9,6 @@ from NodeForge.constants import (
     TYPE_FLOAT,
     TYPE_VECTOR,
     TYPE_INT,
-    _FLOAT_FUNCS_1,
-    _FLOAT_FUNCS_2,
 )
 from NodeForge.errors import CompileError
 from NodeForge.nodes import (
@@ -29,6 +27,33 @@ from NodeForge.consteval import _const_eval
 from NodeForge.values import Value
 from NodeForge.compile_time import reject_compile_time_object
 
+
+_UNARY_MATH_OPERATIONS = {
+    "sin": "SINE",
+    "cos": "COSINE",
+    "tan": "TANGENT",
+    "asin": "ARCSINE",
+    "acos": "ARCCOSINE",
+    "atan": "ARCTANGENT",
+    "sqrt": "SQRT",
+    "abs": "ABSOLUTE",
+    "floor": "FLOOR",
+    "ceil": "CEIL",
+    "round": "ROUND",
+    "fract": "FRACT",
+    "radians": "RADIANS",
+    "degrees": "DEGREES",
+    "exp": "EXPONENT",
+}
+
+_BINARY_MATH_OPERATIONS = {
+    "min": "MINIMUM",
+    "max": "MAXIMUM",
+    "pow": "POWER",
+    "log": "LOGARITHM",
+    "atan2": "ARCTAN2",
+    "mod": "MODULO",
+}
 
 
 @dataclass(frozen=True)
@@ -278,7 +303,7 @@ _SPECS = {
             params=("value",),
             compile_fn=_compile_unary_math(name, op),
         )
-        for name, op in _FLOAT_FUNCS_1.items()
+        for name, op in _UNARY_MATH_OPERATIONS.items()
     },
     **{
         name: MathBuiltinSpec(
@@ -286,7 +311,7 @@ _SPECS = {
             params=("a", "b"),
             compile_fn=_compile_binary_math(name, op),
         )
-        for name, op in _FLOAT_FUNCS_2.items()
+        for name, op in _BINARY_MATH_OPERATIONS.items()
     },
     "ln": MathBuiltinSpec("ln", ("value",), _compile_ln_spec),
     "clamp": MathBuiltinSpec("clamp", ("value", "min", "max"), _compile_clamp_spec),
