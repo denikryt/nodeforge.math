@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
+from NodeForge import packages
 from NodeForge.extension_registry import ExtensionOwnerSession, capture_owner_code_snapshot
 from NodeForge.nf_types import NFType
 
@@ -44,3 +46,12 @@ def test_math_physical_module_uses_only_public_extension_boundary():
     assert "NodeForge.values" not in source
     assert "Compiler" not in source
     assert "NodeForge.extension_api" in source
+
+
+def test_math_23_manifest_accepts_nodeforge_0612():
+    """The paired Math 2.3 manifest admits the NodeForge 0.61.3 patch release."""
+    manifest = packages.validate_package_root(ROOT)
+    raw = json.loads((ROOT / "nodeforge_package.json").read_text(encoding="utf-8"))
+    assert manifest.version == "2.3"
+    assert raw["nodeforge_min_version"] == "0.59.0"
+    assert raw["nodeforge_max_version"] == "0.61.3"
