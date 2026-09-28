@@ -48,10 +48,10 @@ def test_math_physical_module_uses_only_public_extension_boundary():
     assert "NodeForge.extension_api" in source
 
 
-def test_math_23_manifest_accepts_nodeforge_0612():
-    """The paired Math 2.3 manifest admits the NodeForge 0.61.3 patch release."""
+def test_math_24_manifest_accepts_nodeforge_0620():
+    """The paired Math 2.5 manifest admits the NodeForge 0.62.1 bug-fix release."""
     manifest = packages.validate_package_root(ROOT)
     raw = json.loads((ROOT / "nodeforge_package.json").read_text(encoding="utf-8"))
-    assert manifest.version == "2.3"
+    assert manifest.version == "2.5"
     assert raw["nodeforge_min_version"] == "0.59.0"
-    assert raw["nodeforge_max_version"] == "0.61.3"
+    assert raw["nodeforge_max_version"] == "0.62.1"

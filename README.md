@@ -4,11 +4,11 @@ NodeForge Math is an installable package for the [NodeForge](https://github.com/
 
 ## Compatibility
 
-NodeForge Math 2.3 is compatible with NodeForge 0.59.0 through 0.61.3. Because the package contains executable Python extensions, Python permission must be enabled when it is imported.
+NodeForge Math 2.5 is compatible with NodeForge 0.59.0 through 0.62.1. Because the package contains executable Python extensions, Python permission must be enabled when it is imported.
 
 ## Installation
 
-1. Install a compatible NodeForge release from 0.59.0 through 0.61.3.
+1. Install a compatible NodeForge release from 0.59.0 through 0.62.1.
 2. Download `nodeforge.math-v<version>.zip` from the [NodeForge Math releases](https://github.com/denikryt/nodeforge.math/releases).
 3. In Blender, open the **Geometry Nodes Editor** and press `N` to show its sidebar.
 4. Open the **NodeForge** tab and find the **Packages** section.
