@@ -2,13 +2,9 @@
 
 NodeForge Math is an installable package for the [NodeForge](https://github.com/denikryt/NodeForge) Blender add-on. It adds typed, compiler-backed math operations such as `sin()`, `cos()`, `sqrt()`, `clamp()`, `select()`, `noise()`, and `random_value()`, along with reusable `.nf` functions and example scripts.
 
-## Compatibility
-
-NodeForge Math 2.6 is compatible with NodeForge 0.59.0 through 0.62.2. Because the package contains executable Python extensions, Python permission must be enabled when it is imported.
-
 ## Installation
 
-1. Install a compatible NodeForge release from 0.59.0 through 0.62.2.
+1. Install a compatible [NodeForge release](https://github.com/denikryt/NodeForge/releases)
 2. Download `nodeforge.math-v<version>.zip` from the [NodeForge Math releases](https://github.com/denikryt/nodeforge.math/releases).
 3. In Blender, open the **Geometry Nodes Editor** and press `N` to show its sidebar.
 4. Open the **NodeForge** tab and find the **Packages** section.
@@ -26,7 +22,6 @@ The package's math operations, reusable functions, and examples become available
 ## Development notes
 
 The Math system uses NodeForge extension API v2. Its public signatures are declared in `systems/math/interface.py`, while `systems/math/operations.py` builds their Geometry Nodes representation through `NodeForge.extension_api` and Blender's public node-tree API.
-
 
 ## Documentation
 
