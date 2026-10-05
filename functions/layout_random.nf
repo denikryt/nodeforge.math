@@ -1,3 +1,5 @@
+from packages import math
+
 geometry = input_geometry("Geometry")
 min_value = input_vector("Min", default=vector(-1, -1, -1))
 max_value = input_vector("Max", default=vector(1, 1, 1))

@@ -3,7 +3,7 @@
 # Rings are made from overlapping tangent segments on a runtime point grid.
 # Wobble Frequency is an integer so each contour closes without a radial seam.
 
-from functions import grid_points
+from packages import math
 
 rings = input_int("Rings", default=10)
 samples = input_int("Samples Per Ring", default=96)

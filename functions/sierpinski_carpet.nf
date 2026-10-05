@@ -11,7 +11,7 @@
 #   Scale    - per-iteration scale; use vector(1/3, 1/3, 1) for flat carpet
 #              or vector(1/3, 1/3, 1/3) if you want Z to shrink too.
 
-from functions import copy_by_offsets
+from packages import math
 
 geo = input_geometry("Geometry")
 steps = input_int("Steps", default=2)

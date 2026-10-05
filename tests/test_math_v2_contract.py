@@ -48,3 +48,43 @@ def test_math_physical_module_uses_only_public_extension_boundary():
     assert "NodeForge.extension_api" in source
 
 
+def test_math_271_manifest_targets_nodeforge_065x():
+    """The Math 2.7.1 manifest admits the NodeForge 0.65.x patch line."""
+    manifest = packages.validate_package_root(ROOT)
+    raw = json.loads((ROOT / "nodeforge_package.json").read_text(encoding="utf-8"))
+    assert manifest.version == "2.7.1"
+    assert manifest.import_name == "math"
+    assert raw["nodeforge_min_version"] == "0.65.0"
+    assert raw["nodeforge_max_version"] == "0.65.1"
+
+
+def test_math_package_ships_only_supported_v2_python_owner():
+    """The reference Math package retains its backend-only Extension API v2 owner."""
+    assert (MATH_OWNER / "interface.py").is_file()
+    assert (MATH_OWNER / "operations.py").is_file()
+    assert "NodeForge.extension_api" in (MATH_OWNER / "operations.py").read_text(encoding="utf-8")
+
+
+def test_math_package_ships_no_v1_execution_artifact():
+    """No shipped Python source depends on the physically removed v1 compiler APIs."""
+    assert not (ROOT / "examples" / "mandelbrot").exists()
+    forbidden = (
+        "BACKEND_BUILTINS",
+        "NodeForge.statements",
+        "NodeForge.compiler",
+        "NodeForge.runtime",
+        "NodeForge.expression_compiler",
+        "NodeForge.statement_compiler",
+    )
+    for path in ROOT.rglob("*.py"):
+        if ".git" in path.parts or "tests" in path.parts:
+            continue
+        source = path.read_text(encoding="utf-8")
+        for token in forbidden:
+            assert token not in source, (path.relative_to(ROOT), token)
+
+
+def test_math_manifest_no_longer_caps_at_nodeforge_0621():
+    """The coordinated package metadata cannot remain pinned to the pre-cutover core patch."""
+    raw = json.loads((ROOT / "nodeforge_package.json").read_text(encoding="utf-8"))
+    assert raw["nodeforge_max_version"] != "0.62.1"

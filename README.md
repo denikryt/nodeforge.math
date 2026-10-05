@@ -13,6 +13,15 @@ NodeForge Math is an installable package for the [NodeForge](https://github.com/
 
 The package's math operations, reusable functions, and examples become available after the import completes.
 
+To call it's methods and functions import the package first with the following syntax:
+
+```python
+from packages import math
+
+x = sin(input_float("X"))
+y = math.floor(x)
+```
+
 ## Package contents
 
 - `systems/math` provides the typed math operations available to NodeForge source.

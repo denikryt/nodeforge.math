@@ -1,7 +1,7 @@
 # Field-driven tiled wave.
 # Shows grid point layouts, vector length, smoothstep falloff, per-instance scale, and trigonometric fields.
 
-from functions import grid_points, smoothstep
+from packages import math
 
 count_x = input_int("Count X", default=18)
 count_y = input_int("Count Y", default=18)

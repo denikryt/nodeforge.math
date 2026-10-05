@@ -5,6 +5,8 @@
 #   0.0 = straight ladder
 #  -1.0 = same pitch, opposite handedness
 
+from packages import math
+
 base_pairs = input_int("Base Pairs", default=84)
 helix_radius = input_float("Helix Radius", default=0.75)
 rise_per_pair = input_float("Rise Per Pair", default=0.105)

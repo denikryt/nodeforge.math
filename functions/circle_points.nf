@@ -1,3 +1,5 @@
+from packages import math
+
 count = input_int("Count", default=16)
 radius = input_float("Radius", default=1.0)
 start_angle = input_float("Start Angle", default=0.0)

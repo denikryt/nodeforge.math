@@ -1,7 +1,7 @@
 # Runtime helix ladder built from point grids and instancing.
 # Step count is a runtime input, so the node graph does not grow with a compile-time range().
 
-from functions import grid_points
+from packages import math
 
 steps = input_int("Steps", default=24)
 radius = input_float("Radius", default=1.5)

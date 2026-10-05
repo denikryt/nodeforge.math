@@ -1,3 +1,5 @@
+from packages import math
+
 geometry = input_geometry("Geometry")
 count = input_int("Count", default=16)
 radius = input_float("Radius", default=1.0)

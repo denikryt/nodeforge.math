@@ -2,11 +2,11 @@
   "schema_version": 1,
   "id": "nodeforge.math",
   "name": "NodeForge Math",
-  "version": "2.1",
+  "version": "2.2",
   "author": "nachitima",
   "description": "Math functions and methods inspired by Python math.",
-  "nodeforge_min_version": "0.59.0",
-  "nodeforge_max_version": "0.63.1",
+  "nodeforge_min_version": "0.65.0",
+  "nodeforge_max_version": "0.65.1",
   "contents": {
     "functions": "functions",
     "examples": "examples",
@@ -14,5 +14,6 @@
   },
   "permissions": {
     "python": true
-  }
+  },
+  "import_name": "math"
 }

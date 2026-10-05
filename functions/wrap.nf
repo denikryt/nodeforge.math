@@ -1,3 +1,5 @@
+from packages import math
+
 x = input_float("X", default=0.0)
 min_value = input_float("Min", default=0.0)
 max_value = input_float("Max", default=1.0)

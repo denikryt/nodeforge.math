@@ -2,7 +2,7 @@
 # The road deck is explicit, with two side trusses, vertical hangers, X bracing,
 # and a smooth arched top chord built from tangent-aligned short beam segments.
 
-from functions import grid_points
+from packages import math
 
 bays = input_int("Bays", default=32)
 visual_bays = max(bays, 2)

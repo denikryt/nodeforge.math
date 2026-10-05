@@ -1,4 +1,4 @@
-from functions import inverse_lerp
+from packages import math
 
 x = input_float("X", default=0.0)
 in_min = input_float("In Min", default=0.0)
