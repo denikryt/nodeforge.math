@@ -36,7 +36,6 @@ for i in repeat_range(base_pairs):
     next_angle = phase + (i + 1) * primary_turn_per_pair * twist_scale
 
     center = vector(0.0, 0.0, z)
-    next_center = vector(0.0, 0.0, z_next)
 
     strand_a = vector(cos(angle) * helix_radius, sin(angle) * helix_radius, z)
     strand_b = vector(cos(angle + strand_b_offset) * helix_radius, sin(angle + strand_b_offset) * helix_radius, z)
