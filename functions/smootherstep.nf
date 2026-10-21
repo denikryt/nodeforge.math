@@ -1,4 +1,4 @@
-from functions import inverse_lerp, saturate
+from packages import math
 
 edge0 = input_float("Edge0", default=0.0)
 edge1 = input_float("Edge1", default=1.0)

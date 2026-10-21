@@ -2,7 +2,7 @@
 # The road deck is explicit, with two side trusses, vertical hangers, X bracing,
 # and a smooth arched top chord built from tangent-aligned short beam segments.
 
-from functions import grid_points
+from packages import math
 
 bays = input_int("Bays", default=32)
 visual_bays = max(bays, 2)
@@ -24,7 +24,6 @@ curb_height = road_thickness * 0.72
 span = visual_bays * bay_width
 half_span = span * 0.5
 side_y = deck_width * 0.5
-road_z = 0.0
 bottom_z = beam * 1.1
 
 # A visible roadway: slab, darker asphalt strip, curbs, and a center marking.

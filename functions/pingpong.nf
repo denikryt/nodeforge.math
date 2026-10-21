@@ -1,3 +1,5 @@
+from packages import math
+
 x = input_float("X", default=0.0)
 length = input_float("Length", default=1.0)
 

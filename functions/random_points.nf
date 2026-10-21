@@ -1,4 +1,4 @@
-from functions import layout_random
+from packages import math
 
 count = input_int("Count", default=16)
 min_value = input_vector("Min", default=vector(-1, -1, -1))

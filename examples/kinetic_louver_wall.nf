@@ -2,7 +2,7 @@
 # Runtime grid dimensions create a facade of tilting zero-thickness blades driven by field math.
 # No backing plate, no border frame, no blade size inputs.
 
-from functions import grid_points
+from packages import math
 
 columns = input_int("Columns", default=18)
 rows = input_int("Rows", default=9)

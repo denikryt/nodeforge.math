@@ -1,3 +1,5 @@
+from packages import math
+
 geometry = input_geometry("Geometry")
 count = input_vector("Count", default=vector(1, 1, 1))
 spacing = input_vector("Spacing", default=vector(1, 1, 1))

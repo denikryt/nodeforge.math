@@ -1,6 +1,8 @@
 # Noise terrain built from a mesh grid.
 # The noise domain is offset and domain-warped to avoid a visible convergence artifact at object origin.
 
+from packages import math
+
 resolution = input_int("Resolution", default=64)
 height_scale = input_float("Height Scale", default=1.0)
 noise_scale = input_float("Noise Scale", default=4.5)

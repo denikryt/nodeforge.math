@@ -1,6 +1,8 @@
 # Fibonacci / sunflower spiral using runtime points, index(), and instance_on_points().
 # Count changes the number of generated instances at runtime.
 
+from packages import math
+
 geo = input_geometry("Geometry")
 count = input_int("Count", default=120)
 scale = input_float("Scale", default=0.08)

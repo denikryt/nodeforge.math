@@ -1,3 +1,5 @@
+from packages import math
+
 v = input_vector("V", default=vector(1, 0, 0))
 axis = input_vector("Axis", default=vector(0, 0, 1))
 angle = input_float("Angle", default=0.0)
