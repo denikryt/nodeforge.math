@@ -4,12 +4,11 @@ NodeForge Math is an installable package for the [NodeForge](https://github.com/
 
 ## Installation
 
-1. Install a compatible [NodeForge release](https://github.com/denikryt/NodeForge/releases)
-2. Download `nodeforge.math-v<version>.zip` from the [NodeForge Math releases](https://github.com/denikryt/nodeforge.math/releases).
+1. Install a [NodeForge release](https://github.com/denikryt/NodeForge/releases) that meets the package's minimum NodeForge version.
+2. Download `nodeforge.math-v<version>_nf-v<minimum-nodeforge-version>.zip` from the [NodeForge Math releases](https://github.com/denikryt/nodeforge.math/releases).
 3. In Blender, open the **Geometry Nodes Editor** and press `N` to show its sidebar.
 4. Open the **NodeForge** tab and find the **Packages** section.
-5. Enable **Allow executable Python**.
-6. Click **Import** and select the downloaded ZIP file.
+5. Click **Install ZIP** and select the downloaded ZIP file.
 
 The package's math operations, reusable functions, and examples become available after the import completes.
 
