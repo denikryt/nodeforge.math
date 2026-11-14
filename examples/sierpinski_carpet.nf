@@ -13,11 +13,12 @@
 
 from packages import math
 
-geo = input_geometry("Geometry")
-steps = input_int("Steps", default=2)
-scale = input_vector("Scale", default=vector(1/3, 1/3, 1))
+def sierpinski_carpet(
+    geo: Geometry['Geometry'],
+    steps: Int['Steps'] = 2,
+    scale: Vector['Scale'] = vector(1/3, 1/3, 1),
+) -> Geometry['Geometry']:
+    for i in repeat_range(steps):
+        geo = copy_by_offsets(geo, scale=scale)
 
-for i in repeat_range(steps):
-    geo = copy_by_offsets(geo, scale=scale)
-
-output("Geometry", geo)
+    return geo

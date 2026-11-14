@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 from NodeForge import packages
-from NodeForge.extension_registry import ExtensionOwnerSession, capture_owner_code_snapshot
+from NodeForge.extensions.registry import ExtensionOwnerSession, capture_owner_code_snapshot
 from NodeForge.nf_types import NFType
 
 
@@ -48,14 +48,14 @@ def test_math_physical_module_uses_only_public_extension_boundary():
     assert "NodeForge.extension_api" in source
 
 
-def test_math_271_manifest_targets_nodeforge_065x():
-    """The Math 2.7.1 manifest admits the NodeForge 0.65.x patch line."""
+def test_math_23_manifest_targets_nodeforge_0902():
+    """The migrated Math package requires the typed file-module NodeForge release."""
     manifest = packages.validate_package_root(ROOT)
     raw = json.loads((ROOT / "nodeforge_package.json").read_text(encoding="utf-8"))
-    assert manifest.version == "2.7.1"
+    assert manifest.version == "2.3"
     assert manifest.import_name == "math"
-    assert raw["nodeforge_min_version"] == "0.65.0"
-    assert raw["nodeforge_max_version"] == "0.65.1"
+    assert raw["nodeforge_min_version"] == "0.90.2"
+    assert "nodeforge_max_version" not in raw
 
 
 def test_math_package_ships_only_supported_v2_python_owner():
@@ -87,4 +87,4 @@ def test_math_package_ships_no_v1_execution_artifact():
 def test_math_manifest_no_longer_caps_at_nodeforge_0621():
     """The coordinated package metadata cannot remain pinned to the pre-cutover core patch."""
     raw = json.loads((ROOT / "nodeforge_package.json").read_text(encoding="utf-8"))
-    assert raw["nodeforge_max_version"] != "0.62.1"
+    assert raw.get("nodeforge_max_version") != "0.62.1"

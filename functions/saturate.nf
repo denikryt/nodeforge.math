@@ -1,4 +1,6 @@
 from packages import math
 
-x = input_float("X", default=0.0)
-output("Value", clamp(x, 0.0, 1.0))
+def saturate(
+    x: Float['X'] = 0.0,
+) -> Float['Value']:
+    return clamp(x, 0.0, 1.0)

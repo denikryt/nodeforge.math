@@ -12,14 +12,15 @@
 #   value = fibonacci(8)
 #   output("Value", value)
 
-n = input_int("N", default=8)
+def fibonacci(
+    n: Int['N'] = 8,
+) -> Int['Value']:
+    a = 0
+    b = 1
 
-a = 0
-b = 1
+    for i in repeat_range(n):
+        next = a + b
+        a = b
+        b = next
 
-for i in repeat_range(n):
-    next = a + b
-    a = b
-    b = next
-
-output("Value", a)
+    return a

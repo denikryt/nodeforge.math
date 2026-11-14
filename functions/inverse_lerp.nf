@@ -1,4 +1,7 @@
-a = input_float("A", default=0.0)
-b = input_float("B", default=1.0)
-x = input_float("X", default=0.0)
-output("Value", (x - a) / (b - a))
+
+def inverse_lerp(
+    a: Float['A'] = 0.0,
+    b: Float['B'] = 1.0,
+    x: Float['X'] = 0.0,
+) -> Float['Value']:
+    return (x - a) / (b - a)
