@@ -12,20 +12,29 @@ NodeForge Math is an installable package for the [NodeForge](https://github.com/
 
 The package's math operations, reusable functions, and examples become available after the import completes.
 
-To call it's methods and functions import the package first with the following syntax:
+Import the package and call its functions through the package namespace:
 
 ```python
 from packages import math
 
-x = sin(input_float("X"))
-y = math.floor(x)
+def evaluate(x: Float["X"] = 0.5) -> Float:
+    return math.sin(x) + math.smoothstep(0.0, 1.0, x)
 ```
+
+Each file under `functions/` defines one typed `.nf` function. Its filename
+identifies the module, and the function name is its public package member.
+For example, `functions/smoothstep.nf` declares `def smoothstep(...)` and is
+called as `math.smoothstep(...)`. 
 
 ## Package contents
 
 - `systems/math` provides the typed math operations available to NodeForge source.
 - `functions` contains reusable `.nf` functions for interpolation, remapping, point layouts, rotations, and other common tasks.
 - `examples` contains complete NodeForge scripts demonstrating procedural setups such as terrain, spirals, trusses, contours, and fractals.
+
+## Compatibility
+
+Version 2.3 requires NodeForge 0.90.2 or later and Blender 5.2 or later.
 
 ## Development notes
 

@@ -3,27 +3,28 @@
 
 from packages import math
 
-geo = input_geometry("Geometry")
-count = input_int("Count", default=120)
-scale = input_float("Scale", default=0.08)
-instance_scale = input_float("Instance Scale", default=0.08)
-turn = input_float("Turn", default=2.39996322973)
+def fibonacci_spiral(
+    geo: Geometry['Geometry'],
+    count: Int['Count'] = 120,
+    scale: Float['Scale'] = 0.08,
+    instance_scale: Float['Instance Scale'] = 0.08,
+    turn: Float['Turn'] = 2.39996322973,
+) -> Geometry['Geometry']:
+    pts = points(count)
 
-pts = points(count)
+    i = index()
+    a = i * turn
+    r = sqrt(i) * scale
 
-i = index()
-a = i * turn
-r = sqrt(i) * scale
+    pts = set_position(
+        pts,
+        vector(cos(a) * r, sin(a) * r, 0)
+    )
 
-pts = set_position(
-    pts,
-    vector(cos(a) * r, sin(a) * r, 0)
-)
+    out = instance_on_points(
+        geo,
+        pts,
+        scale=vector(instance_scale, instance_scale, instance_scale)
+    )
 
-out = instance_on_points(
-    geo,
-    pts,
-    scale=vector(instance_scale, instance_scale, instance_scale)
-)
-
-output("Geometry", out)
+    return out

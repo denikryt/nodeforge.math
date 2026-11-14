@@ -6,33 +6,121 @@ import math
 
 from NodeForge.extension_api import ExtensionBackendValue, NFType
 
-
-_UNARY_OPERATIONS = {
-    "sin": "SINE",
-    "cos": "COSINE",
-    "tan": "TANGENT",
-    "asin": "ARCSINE",
-    "acos": "ARCCOSINE",
-    "atan": "ARCTANGENT",
-    "sqrt": "SQRT",
-    "abs": "ABSOLUTE",
-    "floor": "FLOOR",
-    "ceil": "CEIL",
-    "round": "ROUND",
-    "fract": "FRACT",
-    "radians": "RADIANS",
-    "degrees": "DEGREES",
-    "exp": "EXPONENT",
+_SWITCH_TYPES = {
+    NFType.FLOAT: "FLOAT",
+    NFType.INT: "INT",
+    NFType.VECTOR: "VECTOR",
+    NFType.BOOL: "BOOLEAN",
+    NFType.GEOMETRY: "GEOMETRY",
+    NFType.STRING: "STRING",
+    NFType.BUNDLE: "BUNDLE",
 }
 
-_BINARY_OPERATIONS = {
-    "min": "MINIMUM",
-    "max": "MAXIMUM",
-    "pow": "POWER",
-    "log": "LOGARITHM",
-    "atan2": "ARCTAN2",
-    "mod": "MODULO",
-}
+# Each interface EXTENSIONS target has a corresponding explicit Python function.
+# The shared helpers centralize Blender node construction and socket wiring.
+def sin_node(context, value):
+    """Realize sin() with one Blender Math node."""
+    return _unary(context, "SINE", value)
+
+
+def cos_node(context, value):
+    """Realize cos() with one Blender Math node."""
+    return _unary(context, "COSINE", value)
+
+
+def tan_node(context, value):
+    """Realize tan() with one Blender Math node."""
+    return _unary(context, "TANGENT", value)
+
+
+def asin_node(context, value):
+    """Realize asin() with one Blender Math node."""
+    return _unary(context, "ARCSINE", value)
+
+
+def acos_node(context, value):
+    """Realize acos() with one Blender Math node."""
+    return _unary(context, "ARCCOSINE", value)
+
+
+def atan_node(context, value):
+    """Realize atan() with one Blender Math node."""
+    return _unary(context, "ARCTANGENT", value)
+
+
+def sqrt_node(context, value):
+    """Realize sqrt() with one Blender Math node."""
+    return _unary(context, "SQRT", value)
+
+
+def abs_node(context, value):
+    """Realize abs() with one Blender Math node."""
+    return _unary(context, "ABSOLUTE", value)
+
+
+def floor_node(context, value):
+    """Realize floor() with one Blender Math node."""
+    return _unary(context, "FLOOR", value)
+
+
+def ceil_node(context, value):
+    """Realize ceil() with one Blender Math node."""
+    return _unary(context, "CEIL", value)
+
+
+def round_node(context, value):
+    """Realize round() with one Blender Math node."""
+    return _unary(context, "ROUND", value)
+
+
+def fract_node(context, value):
+    """Realize fract() with one Blender Math node."""
+    return _unary(context, "FRACT", value)
+
+
+def radians_node(context, value):
+    """Realize radians() with one Blender Math node."""
+    return _unary(context, "RADIANS", value)
+
+
+def degrees_node(context, value):
+    """Realize degrees() with one Blender Math node."""
+    return _unary(context, "DEGREES", value)
+
+
+def exp_node(context, value):
+    """Realize exp() with one Blender Math node."""
+    return _unary(context, "EXPONENT", value)
+
+
+def min_node(context, a, b):
+    """Realize min() with one Blender Math node."""
+    return _binary(context, "MINIMUM", a, b)
+
+
+def max_node(context, a, b):
+    """Realize max() with one Blender Math node."""
+    return _binary(context, "MAXIMUM", a, b)
+
+
+def pow_node(context, a, b):
+    """Realize pow() with one Blender Math node."""
+    return _binary(context, "POWER", a, b)
+
+
+def log_node(context, a, b):
+    """Realize log() with one Blender Math node."""
+    return _binary(context, "LOGARITHM", a, b)
+
+
+def atan2_node(context, a, b):
+    """Realize atan2() with one Blender Math node."""
+    return _binary(context, "ARCTAN2", a, b)
+
+
+def mod_node(context, a, b):
+    """Realize mod() with one Blender Math node."""
+    return _binary(context, "MODULO", a, b)
 
 
 def _new_node(context, bl_idname: str, *, dx: float = 0.0, dy: float = 0.0):
@@ -117,17 +205,6 @@ def mix_node(context, a, b, factor):
         _link(context, b, node.inputs[5])
         output = node.outputs[1]
     return context.value(output, a.typ)
-
-
-_SWITCH_TYPES = {
-    NFType.FLOAT: "FLOAT",
-    NFType.INT: "INT",
-    NFType.VECTOR: "VECTOR",
-    NFType.BOOL: "BOOLEAN",
-    NFType.GEOMETRY: "GEOMETRY",
-    NFType.STRING: "STRING",
-    NFType.BUNDLE: "BUNDLE",
-}
 
 
 def select_node(context, cond, true, false):
@@ -223,22 +300,3 @@ def build_random_value(context, *args, **kwargs):
         node.inputs[3].default_value = int(seed)
 
     return context.value(node.outputs[0], output_type)
-
-
-def _install_operation_wrappers() -> None:
-    """Create package-private per-callable wrappers without exposing compiler metadata."""
-    for public_name, operation in _UNARY_OPERATIONS.items():
-        def unary(context, value, _operation=operation):
-            return _unary(context, _operation, value)
-        unary.__name__ = f"{public_name}_node"
-        unary.__doc__ = f"Realize {public_name}() with one Blender Math node."
-        globals()[unary.__name__] = unary
-    for public_name, operation in _BINARY_OPERATIONS.items():
-        def binary(context, a, b, _operation=operation):
-            return _binary(context, _operation, a, b)
-        binary.__name__ = f"{public_name}_node"
-        binary.__doc__ = f"Realize {public_name}() with one Blender Math node."
-        globals()[binary.__name__] = binary
-
-
-_install_operation_wrappers()

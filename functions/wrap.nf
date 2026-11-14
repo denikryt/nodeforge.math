@@ -1,8 +1,9 @@
 from packages import math
 
-x = input_float("X", default=0.0)
-min_value = input_float("Min", default=0.0)
-max_value = input_float("Max", default=1.0)
-
-size = max_value - min_value
-output("Value", min_value + mod(mod(x - min_value, size) + size, size))
+def wrap(
+    x: Float['X'] = 0.0,
+    min_value: Float['Min'] = 0.0,
+    max_value: Float['Max'] = 1.0,
+) -> Float['Value']:
+    size = max_value - min_value
+    return min_value + mod(mod(x - min_value, size) + size, size)

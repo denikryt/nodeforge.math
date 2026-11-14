@@ -1,5 +1,7 @@
 from packages import math
 
-edge = input_float("Edge", default=0.0)
-x = input_float("X", default=0.0)
-output("Value", select(x >= edge, 1.0, 0.0))
+def step(
+    edge: Float['Edge'] = 0.0,
+    x: Float['X'] = 0.0,
+) -> Float['Value']:
+    return select(x >= edge, 1.0, 0.0)
